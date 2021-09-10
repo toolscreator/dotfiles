@@ -3,8 +3,8 @@
 	smudge = git-lfs smudge %f
 	required = true
 [user]
-	name = liugundam
-	email = liugundam@outlook.com
+	name = toolscreator
+	email = toolscreator@outlook.com
 [color]
 	ui = auto
 [push]
