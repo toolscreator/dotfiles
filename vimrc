@@ -46,12 +46,13 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 "
 Plugin 'AutoClose'
+"Plugin 'matchparen.vim'
 
 Plugin 'taglist.vim'
 Plugin 'winmanager'
 Plugin 'bufexplorer.zip'
-Plugin 'genutils'
-Plugin 'lookupfile'
+"Plugin 'genutils'
+"Plugin 'lookupfile'
 
 Plugin 'vimwiki'
 
@@ -139,7 +140,7 @@ set hid "Change buffer - without saving
 
 " Set backspace config
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+" set whichwrap+=<,>,h,l  "允许backspace和光标键跨越行边界(不建议)
 
 set ignorecase "Ignore case when searching
 set smartcase
@@ -159,7 +160,7 @@ set noerrorbells
 set novisualbell
 set vb t_vb=
 set tm=500
-set cc=81
+"set cc=81
 " VIM user Interface }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,8 +169,8 @@ set cc=81
 syntax enable "Enable syntax hl
 syntax on
 
-set gfn=Monaco:h18
-"set gfn=Monospace\ 12
+"set gfn=Monaco:h18
+set gfn=Monospace\ 12
 set ambiwidth=double
 
 if has("gui_running")
@@ -676,7 +677,6 @@ let Tlist_WinWidth = 20
 "nnoremap <silent> <F8> :TlistToggle<CR>
 "inoremap <silent> <F8> <Esc>:TlistToggle<CR><Esc>
 
-set tags+=tags
 function! AutoLoadCTagsAndCScope()
     let max = 5
     let dir = './'
@@ -704,6 +704,7 @@ endfunction
 autocmd BufEnter :call AutoLoadCTagsAndCScope()
 
 set autochdir
+set tags=tags;
 " => Taglist plugin }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -712,7 +713,7 @@ set autochdir
 "let g:neocomplcache_enable_at_startup = 1   " 开启终极智能补全插件neocomplcache
 "let g:neocomplcache_enable_smart_case = 1   " Use smartcase
 "let g:neocomplcache_min_syntax_length = 3   " Set minimum synatax keyword length
-"let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 "inoremap <expr><space>  pumvisible() ? neocomplcache#close_popup() . "\<SPACE>" : "\<SPACE>"
 "let g:neocomplcache_nable_quick_match = 1
 "For input-saving, this variable controls whether you can  choose a candidate with a alphabet or number displayed beside a candidate after '-'.  When you input 'ho-a',  neocomplcache will select candidate 'a'.  启动快速匹配
@@ -781,7 +782,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 "set completeopt+=longest
 "let g:neocomplete#enable_auto_select = 1
 "let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

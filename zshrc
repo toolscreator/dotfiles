@@ -1,5 +1,4 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/Lattner/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -85,13 +84,15 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Lattner's hook
-export PATH="$PATH:/opt/local/bin"
-export PATH="$PATH:${HOME}/bin"
+export PATH="/home/liugang/workspace/illvm/builddebug/bin:$PATH"
 
 alias cd1="cd .."
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
 alias cd4="cd ../../../.."
 alias cd5="cd ../../../../.."
+alias cd6="cd ../../../../../.."
 
 export BLOG=$HOME/blog/source/_posts
+
+[[ -n "$TMUX" ]] && PROMPT_COMMAND='echo -n -e "\e]2;${PWD/${HOME}/~}\e\\"'
