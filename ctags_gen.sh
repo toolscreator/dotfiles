@@ -1,1 +1,1 @@
-ctags --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++
+ctags -R --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ ./*

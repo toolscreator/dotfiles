@@ -2,10 +2,8 @@
 " Maintainer: toolscreator
 "             toolscreator@outlook.com
 "
-" Version: 1.0 - 2015.3.3
-" Version: 2.0 - 2015.9.1
-"
 " Sections:
+"    -> Vundle
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -18,15 +16,12 @@
 "    -> Parenthesis/bracket expanding
 "    -> General Abbrevs
 "    -> Editing mappings
-"    -> Vunble
 "    -> Cope
 "    -> Minibuffer plugin
-"    -> Omni complete functions
+"    -> NeoComplCache plugin
 "    -> Python section
 "    -> JavaScript section
 "    -> LLVM section
-" Plugins_Included:
-"
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -62,12 +57,10 @@ Plugin 'gdbvim.tar.gz'
 "Plugin 'snipMate'
 Plugin 'Shougo/neocomplete'
 Plugin 'SuperTab'
+Plugin 'DrawIt'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
-filetype plugin indent on    " required!
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -244,8 +237,9 @@ set cindent "C-style indeting
 set wrap "Wrap lines
 
 set fen "Enable folding
+autocmd FileType c,cpp setlocal foldmethod=syntax
 "set foldmethod=syntax
-set foldmethod=marker
+set foldmethod=marker  " Fold marker '\{\{\{'
 set foldlevel=100
 nnoremap <space> za
 "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -713,17 +707,16 @@ set tags=tags;
 "let g:neocomplcache_enable_at_startup = 1   " 开启终极智能补全插件neocomplcache
 "let g:neocomplcache_enable_smart_case = 1   " Use smartcase
 "let g:neocomplcache_min_syntax_length = 3   " Set minimum synatax keyword length
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+"let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 "inoremap <expr><space>  pumvisible() ? neocomplcache#close_popup() . "\<SPACE>" : "\<SPACE>"
 "let g:neocomplcache_nable_quick_match = 1
 "For input-saving, this variable controls whether you can  choose a candidate with a alphabet or number displayed beside a candidate after '-'.  When you input 'ho-a',  neocomplcache will select candidate 'a'.  启动快速匹配
-" => NeoComplCache plugin }}}
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
@@ -785,6 +778,8 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
+"function! SuperTabSetDefaultCompletionType(type)
+"endfunction
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -802,6 +797,7 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" => NeoComplCache plugin }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lookupfile plugin {{{
@@ -854,12 +850,6 @@ nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " => cscope plugin  }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-" => Omni complete functions }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking {{{
